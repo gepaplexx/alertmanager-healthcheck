@@ -15,11 +15,10 @@ different clusters.
 
 ## Usage
 
-Clone this repo and build via Docker:
+Pull from GitHub Container Registry and Run: 
 
 ```
-docker build -t alertmanager-healthcheck .
-docker run -d -p 2112:2112 alertmanager-healthcheck
+docker run -d -p 2112:2112 ghcr.io/gepaplexx/alertmanager-healthcheck:main
 ```
 
 ## Integration
