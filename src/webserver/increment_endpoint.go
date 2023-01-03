@@ -1,8 +1,8 @@
 package webserver
 
 import (
-	"alertmanager_health/logging"
-	"alertmanager_health/metrics"
+	"alertmanager_healthcheck/logging"
+	"alertmanager_healthcheck/metrics"
 	"fmt"
 	"encoding/json"
 	"net/http"

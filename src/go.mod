@@ -1,4 +1,4 @@
-module alertmanager_health
+module alertmanager_healthcheck
 
 go 1.18
 

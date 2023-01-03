@@ -1,21 +1,26 @@
 package main
 
 import (
-	"alertmanager_health/metrics"
-	"alertmanager_health/webserver"
+	"alertmanager_healthcheck/metrics"
+	"alertmanager_healthcheck/webserver"
 	"net/http"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"alertmanager_health/logging"
+	"alertmanager_healthcheck/logging"
 )
 
 // Entrypoint for the Application
 func main() {
-	mux := CreateMux()
-	http.ListenAndServe(":2112", mux)
+    logger := logging.NewLogger()
+	mux := CreateMux(logger)
+
+    port := ":2112"
+
+	logger.Info("Starting Alertmanager Health Check service on port " + port)
+	http.ListenAndServe(port, mux)
 }
 
 // Creates the Mux that Serves /inc and /metrics
-func CreateMux() *http.ServeMux {
+func CreateMux(logger logging.Logger) *http.ServeMux {
 	mux := http.NewServeMux()
     web := webserver.NewIncrementEndpoint(CreateMetrics(), logging.NewLogger())
     mux.Handle("/inc", web)
