@@ -23,8 +23,9 @@ func main() {
 func CreateMux(logger logging.Logger) *http.ServeMux {
 	mux := http.NewServeMux()
     web := webserver.NewIncrementEndpoint(CreateMetrics(), logging.NewLogger())
-    mux.Handle("/inc", web)
+    mux.Handle("/alertmanager", web)
 	mux.Handle("/metrics", promhttp.Handler())
+	mux.Handle("/", webserver.NewRootEndpoint())
 	return mux
 }
 
@@ -33,8 +34,8 @@ func CreateMux(logger logging.Logger) *http.ServeMux {
 func CreateMetrics() metrics.Metrics {
 	var metrics metrics.Metrics
         metrics.SetCounterVec(
-                "alertmanager_status",
-                "The status of the alertmanager",
+                "alertmanager_health_checks_received",
+                "The amount of health checks that got received from an alertmanager.",
                 "gepardec_cluster",
         )
 	return metrics
