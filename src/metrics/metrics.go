@@ -23,7 +23,7 @@ func (metrics *Metrics) SetCounterVec(name string, help string, label string)  {
 	metrics.CounterVec = promauto.NewCounterVec(prometheus.CounterOpts{
                 Name: name, // "alertmanager_status",
                 Help: help,}, //"The status of the alertmanager",},
-                []string{label}) //"gepardec_cluster"})
+                []string{label}) //"cluster_discriminator"})
 }
 
 // Increments the Counter with the label

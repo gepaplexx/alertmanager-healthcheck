@@ -8,6 +8,6 @@ type Request struct {
 // Type for a structure of an alerts array
 type Alert struct {
 	Labels struct {
-        	GepardecCluster        string `json:"gepardec_cluster"`
+        	ClusterDiscriminator        string `json:"cluster_discriminator"`
 	} `json:"labels"`
 }
