@@ -30,13 +30,13 @@ func CreateMux(logger logging.Logger) *http.ServeMux {
 }
 
 // Creates the Metrics Counter Vector "alertmanager_status"
-// That differentiates by the label "gepardec_cluster"c
+// That differentiates by the label "cluster_discriminator"
 func CreateMetrics() metrics.Metrics {
 	var metrics metrics.Metrics
         metrics.SetCounterVec(
                 "alertmanager_health_checks_received",
                 "The amount of health checks that got received from an alertmanager.",
-                "gepardec_cluster",
+                "cluster_discriminator",
         )
 	return metrics
 }
