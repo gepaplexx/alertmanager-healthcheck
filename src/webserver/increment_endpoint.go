@@ -48,7 +48,7 @@ func (web IncrementEndpoint) ReadJSON(r *http.Request) Request {
 func Parse(alerts []Alert) []string {
 	var arr []string
 	for _, alert := range alerts {
-		arr = append(arr,alert.Labels.GepardecCluster)
+		arr = append(arr,alert.Labels.ClusterDiscriminator)
 	}
 	return arr
 }
