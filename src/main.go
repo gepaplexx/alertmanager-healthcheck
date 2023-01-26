@@ -34,9 +34,9 @@ func CreateMux(logger logging.Logger) *http.ServeMux {
 func CreateMetrics() metrics.Metrics {
 	var metrics metrics.Metrics
         metrics.SetCounterVec(
-                "alertmanager_health_checks_received",
+                "alertmanagerhealthcheck_received_health_checks",
                 "The amount of health checks that got received from an alertmanager.",
-                "gepardec_cluster",
+                "cluster",
         )
 	return metrics
 }
