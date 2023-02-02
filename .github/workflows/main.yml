@@ -25,6 +25,7 @@ env:
 jobs:
   golint:
     name: Go Linter
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v3
         with:
