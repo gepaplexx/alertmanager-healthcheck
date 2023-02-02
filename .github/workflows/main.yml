@@ -1,4 +1,4 @@
-name: Docker
+name: Main
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -23,8 +23,20 @@ env:
 
 
 jobs:
-  build:
+  golint:
+    name: Go Linter
+    steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+      - uses: actions/checkout@v3
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
 
+  build:
+    name: Build Image
     runs-on: ubuntu-latest
     permissions:
       contents: read
