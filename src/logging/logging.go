@@ -7,7 +7,7 @@ import (
 )
 
 // Logger Wrapper for a Logging Library
-// Currently Wraps Uber Zap
+// Currently wraps Uber Zap
 type Logger struct {
 	logger *zap.Logger
 }
