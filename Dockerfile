@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o alertmanager_healthcheck .
 
 
 # generate clean, final image for end users
-FROM alpine:3.11.3
+FROM alpine:3.17.1
 COPY --from=builder /build/alertmanager_healthcheck .
 EXPOSE 2112
 # executable
