@@ -1,17 +1,18 @@
 package logging
 
 import (
-	"go.uber.org/zap"
 	"encoding/json"
+	"fmt"
+	"go.uber.org/zap"
 )
 
-// Wrapper for a Logging Library
+// Logger Wrapper for a Logging Library
 // Currently Wraps Uber Zap
 type Logger struct {
 	logger *zap.Logger
 }
 
-// Creates a new Logger Instance
+// NewLogger Creates a new Logger Instance
 func NewLogger() Logger {
 
 	//JSON Config Data
@@ -27,7 +28,7 @@ func NewLogger() Logger {
 		  "levelEncoder": "lowercase"
 		}
 	}`)
-	
+
 	var wrapper Logger
 	wrapper.logger = instantiateLogger(rawJSON)
 	return wrapper
@@ -37,29 +38,36 @@ func NewLogger() Logger {
 // Returns a zap.Logger Instance
 func instantiateLogger(loggerConf []byte) *zap.Logger {
 	var cfg zap.Config
-  	if err := json.Unmarshal(loggerConf, &cfg); err != nil {
+	if err := json.Unmarshal(loggerConf, &cfg); err != nil {
 		panic(err)
 	}
 	logger, err := cfg.Build()
 	if err != nil {
-	   panic(err)
+		panic(err)
 	}
 
-	return logger 
+	return logger
 }
 
-// Logs on the Info Level
-func (logger Logger) Info(msg string)  {
-	defer logger.logger.Sync()
+// Info Logs on the Info Level
+func (logger Logger) Info(msg string) {
+
+	defer func() {
+		err := logger.logger.Sync()
+		if err != nil {
+			fmt.Println(err)
+		}
+	}()
+
 	logger.logger.Info(msg)
 }
 
-// Logs on the Warn Level
-func (logger Logger) Warn(msg string)  {
+// Warn Logs on the Warn Level
+func (logger Logger) Warn(msg string) {
 	logger.logger.Warn(msg)
 }
 
 // Logs on the Error Level
-func (logger Logger) Error(msg string)  {
+func (logger Logger) Error(msg string) {
 	logger.logger.Error(msg)
 }
