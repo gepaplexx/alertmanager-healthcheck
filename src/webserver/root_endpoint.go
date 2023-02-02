@@ -1,20 +1,23 @@
 package webserver
 
 import (
-    "net/http"
-    "fmt"
+	"fmt"
+	"net/http"
 )
 
-// Type for serving a simple message (probably for application readiness checks)
+// RootEndpoint Type for serving a simple message (probably for application readiness checks)
 type RootEndpoint int
 
 // Serves the message to a http endpoint
-func (root RootEndpoint) ServeHTTP (w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Welcome to the Alertmanager Health Check service!")
+func (root RootEndpoint) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	_, err := fmt.Fprintf(w, "Welcome to the Alertmanager Health Check service!")
+	if err != nil {
+		return
+	}
 }
 
-// Function for instantiating the RootEndpoint type
+// NewRootEndpoint Function for instantiating the RootEndpoint type
 func NewRootEndpoint() RootEndpoint {
-  var root RootEndpoint
-  return root
+	var root RootEndpoint
+	return root
 }
