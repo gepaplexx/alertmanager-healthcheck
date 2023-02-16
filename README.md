@@ -10,7 +10,7 @@ receiving heartbeats from Prometheus alertmanagers. It exposes two endpoints ove
 
 The `/metrics` endpoint provides a metric called `alertmanager_status`, which is a counter vector
 that increments per alert of an alertmanager. The Alerts pushed to `/inc` should
-include a label called `gepardec_cluster` in order to differentiate the counters of alertmanagers of
+include a label called `cluster_discriminator` in order to differentiate the counters of alertmanagers of
 different clusters. 
 
 ## Usage
