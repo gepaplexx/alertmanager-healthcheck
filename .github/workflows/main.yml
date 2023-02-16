@@ -1,4 +1,4 @@
-name: Main
+name: Validate, build and publish image
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -12,8 +12,6 @@ on:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "main", "*"]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -40,7 +38,7 @@ jobs:
   build:
     name: Build Image
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'   
+    if: ${{ github.event_name != 'schedule' }}
     needs:
       - golint
     permissions:
