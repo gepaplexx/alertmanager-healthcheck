@@ -1,5 +1,5 @@
 # builder image
-FROM golang:latest as builder
+FROM docker.io/library/golang:latest as builder
 RUN mkdir /build
 ADD ./src/ /build/
 RUN ls -la /build
