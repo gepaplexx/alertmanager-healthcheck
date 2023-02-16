@@ -1,5 +1,5 @@
 # builder image
-FROM docker.io/library/golang:latest as builder
+FROM docker.io/library/golang:1.20.1 as builder
 RUN mkdir /build
 ADD ./src/ /build/
 RUN ls -la /build
@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o alertmanager_healthcheck .
 
 
 # generate clean, final image for end users
-FROM alpine:3.17.2
+FROM docker.io/library/alpine:3.17.2
 COPY --from=builder /build/alertmanager_healthcheck .
 EXPOSE 2112
 # executable
