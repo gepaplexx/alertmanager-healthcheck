@@ -1,7 +1,7 @@
 # builder image
 FROM docker.io/library/golang:1.20.1 as builder
 RUN mkdir /build
-ADD ./src/ /build/
+COPY ./src/ /build/
 RUN ls -la /build
 WORKDIR /build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o alertmanager_healthcheck .
