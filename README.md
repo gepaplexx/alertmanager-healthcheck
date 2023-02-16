@@ -1,6 +1,6 @@
 # alertmanager-healthcheck
 
-This repository includes an application written in Golang that serves the purpose of 
+This repository includes an application written in Golang that serves the purpose of
 receiving heartbeats from Prometheus alertmanagers. It exposes two endpoints over HTTP on port 2112:
 
 - `/inc`: Receives POST-Requests from alertmanagers in this
@@ -17,15 +17,15 @@ different clusters.
 
 Pull from GitHub Container Registry and Run:
 
-```
+```bash
 docker run -d -p 2112:2112 ghcr.io/gepaplexx/alertmanager-healthcheck:main
 ```
 
 ## Integration
 
-This application is best used with the preconfigured 
+This application is best used with the preconfigured
 [Watchdog](https://docs.openshift.com/container-platform/4.11/monitoring/managing-alerts.html#applying-custom-alertmanager-configuration_managing-alerts)
 alert of RedHat OpenShift Container Platform.
 
-The exposed `alertmanager_status` metric can be used to detect outages of remote alert systems with a 
+The exposed `alertmanager_status` metric can be used to detect outages of remote alert systems with a
 local alertmanager.
