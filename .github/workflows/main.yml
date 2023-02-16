@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'schedule' }}
     needs:
-      - golint
+      - lint
     permissions:
       contents: read
       packages: write
