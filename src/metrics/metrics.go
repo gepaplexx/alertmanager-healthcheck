@@ -7,7 +7,7 @@ import (
 
 // Metrics Type for exposing and accessing the Metrics Endpoint
 type Metrics struct {
-	CounterVec *prometheus.CounterVec
+	CounterVec *prometheus.CounterVsec
 }
 
 // NewMetrics Creates a new Metrics Instance
