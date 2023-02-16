@@ -5,6 +5,8 @@ on:
     secrets:
       token:
         required: true
+      slack-webhook:
+        required: true
 
 jobs:
   golint:
@@ -34,3 +36,19 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.token }}
+  notify:
+    name: Slack Notifications
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    needs:
+      - golint
+      - superlint
+    steps:
+      - name: Notify Slack channel on failure
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.slack-webhook }}
+          SLACK_USERNAME: ${{ github.repository }}
+          SLACK_ICON_EMOJI: ":droplet:"
+          SLACK_COLOR: '#ff0033'
+          SLACK_FOOTER: ''

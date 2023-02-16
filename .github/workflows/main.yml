@@ -25,6 +25,7 @@ jobs:
     uses: ./.github/workflows/lint.yml
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      secrets: ${{ secrets.SLACK_WEBHOOK }}
 
   build:
     name: Build Image
