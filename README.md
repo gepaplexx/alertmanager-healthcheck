@@ -3,7 +3,7 @@
 This repository includes an application written in Golang that serves the purpose of 
 receiving heartbeats from Prometheus alertmanagers. It exposes two endpoints over HTTP on port 2112:
 
-- `/inc`: Receives POST-Requests from alertmanagers in this 
+- `/inc`: Receives POST-Requests from alertmanagers in this
   [format](https://prometheus.io/docs/alerting/latest/configuration/#webhook_config).
 
 - `/metrics`: Endpoint for Prometheus metrics in the OpenMetrics format.
@@ -11,11 +11,11 @@ receiving heartbeats from Prometheus alertmanagers. It exposes two endpoints ove
 The `/metrics` endpoint provides a metric called `alertmanagerhealthcheck_health_checks_received`, which is a counter vector
 that increments per alert of an alertmanager. The Alerts pushed to `/inc` should
 include a label called `cluster_discriminator` in order to differentiate the counters of alertmanagers of
-different clusters. 
+different clusters.
 
 ## Usage
 
-Pull from GitHub Container Registry and Run: 
+Pull from GitHub Container Registry and Run:
 
 ```
 docker run -d -p 2112:2112 ghcr.io/gepaplexx/alertmanager-healthcheck:main
@@ -28,4 +28,4 @@ This application is best used with the preconfigured
 alert of RedHat OpenShift Container Platform.
 
 The exposed `alertmanager_status` metric can be used to detect outages of remote alert systems with a 
-local alertmanager. 
+local alertmanager.
