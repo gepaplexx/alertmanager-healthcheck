@@ -2,8 +2,7 @@ name: Validate pull request
 
 on:
   pull_request:
-    branches-ignore:
-      - 'main'
+
 
 jobs:
   golint:
