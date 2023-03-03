@@ -13,5 +13,5 @@ COPY --from=builder /build/alertmanager_healthcheck .
 EXPOSE 2112
 # executable
 ENTRYPOINT [ "./alertmanager_healthcheck" ]
-# arguments that can be overridden
+# Arguments that can be overridden
 CMD [ "3", "300" ]
