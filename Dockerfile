@@ -1,5 +1,5 @@
 # builder image
-FROM docker.io/library/golang:1.20.1 as builder
+FROM docker.io/library/golang:1.20.2 as builder
 RUN mkdir /build
 COPY ./src/ /build/
 RUN ls -la /build
